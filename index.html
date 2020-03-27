@@ -19,19 +19,27 @@
 
     <div class="container">
         <div class="row margin">
-            <div class="col-sm-3">
-              <div class="input-group mb-3">
+            <div class="col-sm-3 bg-light searchbox">
+
+              <h5 class = "row">Search for city :</h5>
+
+              <div class="row input-group mb-3"> 
                 <input type="text" class="form-control" placeholder="City Name" aria-describedby="button-addon2" id="cityName">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
                 </div>
-            </div>
-          </div>
-          <div id = "information" class="col-sm-9">
-           
-          </div>
+              </div>
 
-      </div>
+              <div class = "row">  
+                <div id = "citiesList" class = "col-md" >  
+                </div>              
+              </div>
+            </div>
+
+          <div id = "information" class="col-sm-9">
+          </div>
+        </div>
+    </div>
     
 </body>
 <script src="script.js"></script>

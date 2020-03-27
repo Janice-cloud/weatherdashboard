@@ -6,15 +6,25 @@ $(searchBtn).on("click", function(event) {
   clear();
   var cityName = cityNameEl.val();
 
-    
   var cityNames = JSON.parse(localStorage.getItem("cities"));
   if(cityNames === null){
       cityNames = []
   }
-
+  console.log(cityNames)
   cityNames.push(cityName)
   
-  localStorage.setItem("cities", JSON.stringify(cityNames))
+  localStorage.setItem("cities", JSON.stringify(cityNames));
+
+
+    for (var i = 0; i < cityNames.length; i++) {
+
+        var citiesList = cityNames[i];
+        
+        var liEl = $("<li>").text(citiesList).attr("class", "list-group-item");
+    
+        $("#citiesList").prepend(liEl); 
+    }
+
 
   var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -110,4 +120,5 @@ $(searchBtn).on("click", function(event) {
 function clear() {
     $("#information").empty();
 }
+
 

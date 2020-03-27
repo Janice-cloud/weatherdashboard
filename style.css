@@ -6,3 +6,8 @@ header {
 .margin {
     padding-top: 30px;
 }
+
+.searchbox {
+    padding: 20px;
+    padding-left: 40px ;
+}
