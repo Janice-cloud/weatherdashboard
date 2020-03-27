@@ -25,11 +25,16 @@ $(searchBtn).on("click", function(event) {
         $("#citiesList").prepend(liEl); 
     }
 
-
-  var queryURL =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
-    cityName +
-    "&units=metric&appid=9db4e6a5ce17b3195b3d176f501370e0";
+    if (location.protocol === 'http:') {  
+        var queryURL =
+        "http://api.openweathermap.org/data/2.5/weather?q=" +
+        cityName +
+        "&units=metric&appid=9db4e6a5ce17b3195b3d176f501370e0";
+    } else { var queryURL =
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+        cityName +
+        "&units=metric&appid=9db4e6a5ce17b3195b3d176f501370e0";
+        }
 
   console.log(cityName);
   console.log(queryURL);
@@ -54,11 +59,17 @@ $(searchBtn).on("click", function(event) {
     var lat = response.coord.lat;
     var lon = response.coord.lon;
 
-    var queryURLtwo =
-      "http://api.openweathermap.org/data/2.5/uvi?appid=9db4e6a5ce17b3195b3d176f501370e0&lat=" +
-      lat +
-      "&lon=" +
-      lon;
+    if (location.protocol === 'http:') { 
+        var queryURLtwo =
+        "http://api.openweathermap.org/data/2.5/uvi?appid=9db4e6a5ce17b3195b3d176f501370e0&lat=" +
+        lat +
+        "&lon=" +
+        lon;
+        } else {"https://api.openweathermap.org/data/2.5/uvi?appid=9db4e6a5ce17b3195b3d176f501370e0&lat=" +
+                lat +
+                "&lon=" +
+                lon;
+            }   
 
     $.ajax({
       url: queryURLtwo,
