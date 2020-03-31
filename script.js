@@ -1,29 +1,19 @@
 var cityNameEl = $("#cityName");
 var searchBtn = $("#button-addon2");
 
-$(searchBtn).on("click", function(event) {
+
+$(searchBtn).on("click", function (event) {
   event.preventDefault();
-  clear();
   var cityName = cityNameEl.val();
+  city(cityName)
+  clear();
+  rendercity(cityName);
+});
 
-  var cityNames = JSON.parse(localStorage.getItem("cities"));
-  if(cityNames === null){
-      cityNames = []
-  }
-  console.log(cityNames)
-  cityNames.push(cityName)
-  
-  localStorage.setItem("cities", JSON.stringify(cityNames));
-
-
-    for (var i = 0; i < cityNames.length; i++) {
-
-        var citiesList = cityNames[i];
-        
-        var liEl = $("<li>").text(citiesList).attr("class", "list-group-item");
-    
-        $("#citiesList").prepend(liEl); 
-    }
+function city() {
+  var cityName = cityNameEl.val();
+  clear();
+ 
 
      var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -115,11 +105,44 @@ $(searchBtn).on("click", function(event) {
         console.log("Humidity: " + response.main.humidity + "%");
       });
   });
-});
+};
 
 // create the clear function button
 function clear() {
     $("#information").empty();
 }
+
+var cityNames;
+
+function rendercity(citiesList) {
+  var cityName = cityNameEl.val();
+
+  cityNames = JSON.parse(localStorage.getItem("cities"));
+  if(cityNames === null){
+      cityNames = []
+  }
+  console.log(cityNames)
+  cityNames.push(cityName)
+  
+  localStorage.setItem("cities", JSON.stringify(cityNames));
+    for (var i = 0; i < cityNames.length; i++) {
+
+        var citiesList = cityNames[i];
+        
+        var liEl = $("<button>").text(citiesList);
+        liEl.attr("class", "list-group-item");
+  
+        $("#citiesList").prepend(liEl); 
+ 
+    }
+}
+
+// $("#citiesList").on("click", function (event) {
+//   console.log(cityNames);
+//   JSON.stringify(cityNames);
+//   for (var i = 0; i < cityNames.length; i++) {
+
+//   }
+// });
 
 
